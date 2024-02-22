@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+<h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Güncelleme</h1>
+<hr style="margin-left: 200px;margin-right: 200px;">
+<div class="container">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">Ürün başarıyla eklendi</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Ürün eklenemedi !</div>
+    </div>
+    <form action="#" th:action="@{'/product/update/'+${productDetail.id}}" th:object="${productDetail}" method="POST" enctype="multipart/form-data">
+        <input type="text" th:field="*{name}" placeholder="Ürün Adı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{description}" placeholder="Ürün Açıklaması" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{category}" placeholder="Ürün Kategorisi" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{price}" placeholder="Ürün Fiyatı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{piece}" placeholder="Ürün Adedi" class="form-control mb-4 col-4" required />
+        <input type="file" th:name="file" placeholder="Ürün Resmi" class="form-control mb-4 col-4" accept="image/png, image/jpeg" required />
+        <button type="submit" class="btn btn-info col-2">Ürünü Güncelle</button>
+    </form>
+</div>
+</body>
+</html>
